@@ -1,5 +1,6 @@
 /adm
 /layers/layer*/*/build
+/layers/layer*/*/cache
 /layers/download_archive
 /layers/layer*/*_extra_packages/src
 /layers/layer*/*_extra_packages/tempolayer*
