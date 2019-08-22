@@ -44,7 +44,7 @@ if ! test -d adm; then mkdir adm; fi
 rm -f adm/root.mk
 touch adm/root.mk
 
-ROOT_PATH=${MFEXT_HOME}/bin:${PATH:-}
+ROOT_PATH=${MFEXT_HOME}/bin:${MFEXT_HOME}/opt/core/bin:${PATH:-}
 
 echo "Making adm/root.mk..."
 rm -f adm/root.mk adm/envtpl
