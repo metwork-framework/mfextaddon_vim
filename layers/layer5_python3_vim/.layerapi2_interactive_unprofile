@@ -1,6 +1,0 @@
-unalias vi
-unalias vim
-unalias vimdiff
-if test "${EDITOR:-}" = "${MFEXT_HOME}/opt/python3_vim/bin/vim_wrapper.sh"; then
-    unset EDITOR
-fi

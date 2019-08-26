@@ -14,7 +14,7 @@ fi
 VIM_LAYER=python${METWORK_PYTHON_MODE}_vim@mfext
 IS_VIM_LAYER_INSTALLED=$(is_layer_installed "${VIM_LAYER}")
 if test "${IS_VIM_LAYER_INSTALLED}" = "1"; then
-    exec layer_wrapper --layers="${VIM_LAYER}" -- "${CURRENT_DIR}/vimdiff" -u "${MFEXT_HOME}/opt/devtools/config/vimrc" "$@"
+    exec layer_wrapper --layers="${VIM_LAYER}" -- "${CURRENT_DIR}/vimdiff" -u "${MFEXT_HOME}/opt/vim/config/vimrc" "$@"
 else
     standard_vimdiff "$@"
     exit $?
