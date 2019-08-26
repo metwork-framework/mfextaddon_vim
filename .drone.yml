@@ -31,18 +31,18 @@ build_common: &build_common
     - export METWORK_BUILD_OS=${OS_VERSION}
     - if test -d /buildcache; then export BUILDCACHE=/buildcache; fi
     - mkdir -p /opt/metwork-mfext-$${TARGET_DIR}
-    - if test -d /pub; then mkdir -p /pub/metwork/continuous_integration/buildlogs/${DRONE_BRANCH}/mfextaddon_template/${OS_VERSION}/${DRONE_BUILD_NUMBER}; fi
-    - if test -d /pub; then make >/pub/metwork/continuous_integration/buildlogs/${DRONE_BRANCH}/mfextaddon_template/${OS_VERSION}/${DRONE_BUILD_NUMBER}/make.log 2>&1 || ( tail -200 /pub/metwork/continuous_integration/buildlogs/${DRONE_BRANCH}/mfextaddon_template/${OS_VERSION}/${DRONE_BUILD_NUMBER}/make.log ; exit 1 ) else make; fi
+    - if test -d /pub; then mkdir -p /pub/metwork/continuous_integration/buildlogs/${DRONE_BRANCH}/mfextaddon_vim/${OS_VERSION}/${DRONE_BUILD_NUMBER}; fi
+    - if test -d /pub; then make >/pub/metwork/continuous_integration/buildlogs/${DRONE_BRANCH}/mfextaddon_vim/${OS_VERSION}/${DRONE_BUILD_NUMBER}/make.log 2>&1 || ( tail -200 /pub/metwork/continuous_integration/buildlogs/${DRONE_BRANCH}/mfextaddon_vim/${OS_VERSION}/${DRONE_BUILD_NUMBER}/make.log ; exit 1 ) else make; fi
     - MODULEHASH=`/opt/metwork-mfext-$${TARGET_DIR}/bin/mfext_wrapper module_hash 2>module_hash.debug` # FIXME: module_hash for addons ?
     - if test -f /opt/metwork-mfext-$${TARGET_DIR}/.dhash; then cat /opt/metwork-mfext-$${TARGET_DIR}/.dhash; fi
     - cat module_hash.debug |sort |uniq ; rm -f module_hash.debug
     - echo "$${MODULEHASH}${DRONE_TAG}${DRONE_BRANCH}" |md5sum |cut -d ' ' -f1 >.build_hash
     - if test -f "$${BUILDCACHE}/build_hash_`cat .build_hash`"; then echo "next bypass"; touch .drone_downstream_bypass; exit 0; fi
-    - if test -d doc; then if test -d /pub; then make doc >/pub/metwork/continuous_integration/buildlogs/${DRONE_BRANCH}/mfextaddon_template/${OS_VERSION}/${DRONE_BUILD_NUMBER}/make_doc.log 2>&1 || ( tail -200 /pub/metwork/continuous_integration/buildlogs/${DRONE_BRANCH}/mfextaddon_template/${OS_VERSION}/${DRONE_BUILD_NUMBER}/make_doc.log ; exit 1 ) else make doc; fi; fi
+    - if test -d doc; then if test -d /pub; then make doc >/pub/metwork/continuous_integration/buildlogs/${DRONE_BRANCH}/mfextaddon_vim/${OS_VERSION}/${DRONE_BUILD_NUMBER}/make_doc.log 2>&1 || ( tail -200 /pub/metwork/continuous_integration/buildlogs/${DRONE_BRANCH}/mfextaddon_vim/${OS_VERSION}/${DRONE_BUILD_NUMBER}/make_doc.log ; exit 1 ) else make doc; fi; fi
     - rm -Rf html_doc
     - if test -d /opt/metwork-mfext-$${TARGET_DIR}/html_doc; then cp -Rf /opt/metwork-mfext-$${TARGET_DIR}/html_doc . ; fi
-    - if test -d /pub; then make test >/pub/metwork/continuous_integration/buildlogs/${DRONE_BRANCH}/mfextaddon_template/${OS_VERSION}/${DRONE_BUILD_NUMBER}/make_test.log 2>&1 || ( tail -200 /pub/metwork/continuous_integration/buildlogs/${DRONE_BRANCH}/mfextaddon_template/${OS_VERSION}/${DRONE_BUILD_NUMBER}/make_test.log ; exit 1 ) else make test; fi
-    - if test -d /pub; then make RELEASE_BUILD=${DRONE_BUILD_NUMBER} rpm >/pub/metwork/continuous_integration/buildlogs/${DRONE_BRANCH}/mfextaddon_template/${OS_VERSION}/${DRONE_BUILD_NUMBER}/make_rpm.log 2>&1 || ( tail -200 /pub/metwork/continuous_integration/buildlogs/${DRONE_BRANCH}/mfextaddon_template/${OS_VERSION}/${DRONE_BUILD_NUMBER}/make_rpm.log ; exit 1 ) else make RELEASE_BUILD=${DRONE_BUILD_NUMBER} rpm; fi
+    - if test -d /pub; then make test >/pub/metwork/continuous_integration/buildlogs/${DRONE_BRANCH}/mfextaddon_vim/${OS_VERSION}/${DRONE_BUILD_NUMBER}/make_test.log 2>&1 || ( tail -200 /pub/metwork/continuous_integration/buildlogs/${DRONE_BRANCH}/mfextaddon_vim/${OS_VERSION}/${DRONE_BUILD_NUMBER}/make_test.log ; exit 1 ) else make test; fi
+    - if test -d /pub; then make RELEASE_BUILD=${DRONE_BUILD_NUMBER} rpm >/pub/metwork/continuous_integration/buildlogs/${DRONE_BRANCH}/mfextaddon_vim/${OS_VERSION}/${DRONE_BUILD_NUMBER}/make_rpm.log 2>&1 || ( tail -200 /pub/metwork/continuous_integration/buildlogs/${DRONE_BRANCH}/mfextaddon_vim/${OS_VERSION}/${DRONE_BUILD_NUMBER}/make_rpm.log ; exit 1 ) else make RELEASE_BUILD=${DRONE_BUILD_NUMBER} rpm; fi
     - mv /opt/metwork-mfext-$${TARGET_DIR}/*.rpm .
   volumes:
     - /pub:/pub
@@ -243,7 +243,7 @@ pipeline:
       - mkdir -p /pub/metwork/releases/rpms/${DRONE_BRANCH}/${OS_VERSION}/
       - cp *.rpm /pub/metwork/releases/rpms/${DRONE_BRANCH}/${OS_VERSION}/
       - createrepo --update /pub/metwork/releases/rpms/${DRONE_BRANCH}/${OS_VERSION}
-      - if test "${OS_VERSION}" = "centos6"; then rm -Rf /pub/metwork/releases/docs/${DRONE_BRANCH}/mfextaddon_template; mkdir -p /pub/metwork/releases/docs/${DRONE_BRANCH}/mfextaddon_template ; if test -d html_doc; then cp -Rf html_doc/* /pub/metwork/releases/docs/${DRONE_BRANCH}/mfextaddon_template/ ; fi ; fi
+      - if test "${OS_VERSION}" = "centos6"; then rm -Rf /pub/metwork/releases/docs/${DRONE_BRANCH}/mfextaddon_vim; mkdir -p /pub/metwork/releases/docs/${DRONE_BRANCH}/mfextaddon_vim ; if test -d html_doc; then cp -Rf html_doc/* /pub/metwork/releases/docs/${DRONE_BRANCH}/mfextaddon_vim/ ; fi ; fi
     when:
       event: tag
       ref: refs/tags/v*

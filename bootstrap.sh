@@ -44,7 +44,7 @@ if ! test -d adm; then mkdir adm; fi
 rm -f adm/root.mk
 touch adm/root.mk
 
-ROOT_PATH=${MFEXT_HOME}/bin:${MFEXT_HOME}/opt/core/bin:${PATH:-}
+ROOT_PATH=${MFEXT_HOME}/bin:${PATH:-}
 
 echo "Making adm/root.mk..."
 rm -f adm/root.mk adm/envtpl
@@ -56,7 +56,7 @@ echo "export MODULE_LOWERCASE := $(echo ${MODULE} | tr '[:upper:]' '[:lower:]')"
 echo "export LAYERAPI2_LAYERS_PATH := ${MFEXT_HOME}/opt:${MFEXT_HOME}" >>adm/root.mk
 echo "export MFEXT_HOME := ${MFEXT_HOME}" >>adm/root.mk
 echo "export MFEXT_ADDON := 1" >>adm/root.mk
-echo "export MFEXT_ADDON_NAME := template" >>adm/root.mk
+echo "export MFEXT_ADDON_NAME := vim" >>adm/root.mk
 echo "export MFEXT_VERSION := ${MFEXT_VERSION}" >>adm/root.mk
 echo "export MODULE_HOME := ${MODULE_HOME}" >>adm/root.mk
 echo "export MODULE_VERSION := ${MFEXT_VERSION}" >>adm/root.mk
