@@ -1,5 +1,5 @@
 [![logo](https://raw.githubusercontent.com/metwork-framework/resources/master/logos/metwork-white-logo-small.png)](http://www.metwork-framework.org)
-# mfextaddon_vim
+#  mfextaddon_vim
 
 [//]: # (automatically generated from https://github.com/metwork-framework/resources/blob/master/cookiecutter/_%7B%7Bcookiecutter.repo%7D%7D/README.md)
 
@@ -13,16 +13,26 @@
 [![Gitter](https://github.com/metwork-framework/resources/blob/master/badges/community-fr.svg)](https://gitter.im/metwork-framework/community-fr?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 
-[//]: # (TABLE_OF_CONTENTS_PLACEHOLDER)
+**Table of contents**
 
-## What is it?
+* [1\. What is it?](#1-what-is-it)
+* [2\. Provided layers](#2-provided-layers)
+* [3\. Provides useful packages](#3-provides-useful-packages)
+* [4\. Quickstart](#4-quickstart)
+* [5\. Contributing guide](#5-contributing-guide)
+* [6\. Code of Conduct](#6-code-of-conduct)
+* [7\. Sponsors](#7-sponsors)
+
+
+
+## 1. What is it?
 
 This module is a [mfext](https://github.com/metwork-framework/mfext) add-on which
 provides an opinionated VIM editor (and configuration) for use in [MetWork Framework](http://metwork-framework.org) env.
 
-**WARNING: this addon is still experimental and not available for released or even master branches**
+**WARNING: this addon is still experimental and not available in released branches**
 
-## Provided layers
+## 2. Provided layers
 
 This add-on provides three layers:
 
@@ -30,14 +40,14 @@ This add-on provides three layers:
 - `python3_vim@mfext` (VIM with Python3 support)
 - `python2_vim@mfext` (VIM with Python2 support)
 
-## Provides useful packages
+## 3. Provides useful packages
 
 So, to install this add-on, you have to install:
 
 - `metwork-mfext-layer-python3_vim` package
 - (and/or) `metwork-mfext-layer-python2_vim` package
 
-## Quickstart
+## 4. Quickstart
 
 ```console
 
@@ -70,19 +80,19 @@ $ vim
 
 
 
-## Contributing guide
+## 5. Contributing guide
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) file.
 
 
 
-## Code of Conduct
+## 6. Code of Conduct
 
 See [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) file.
 
 
 
-## Sponsors
+## 7. Sponsors
 
 *(If you are officially paid to work on MetWork Framework, please contact us to add your company logo here!)*
 
