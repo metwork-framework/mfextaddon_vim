@@ -80,6 +80,10 @@ $ vim
 
 
 
+
+
+
+
 ## 5. Contributing guide
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) file.
