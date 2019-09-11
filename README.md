@@ -19,9 +19,13 @@
 * [2\. Provided layers](#2-provided-layers)
 * [3\. Provides useful packages](#3-provides-useful-packages)
 * [4\. Quickstart](#4-quickstart)
-* [5\. Contributing guide](#5-contributing-guide)
-* [6\. Code of Conduct](#6-code-of-conduct)
-* [7\. Sponsors](#7-sponsors)
+* [5\. Full list of components](#5-full-list-of-components)
+* [6\. Reference documentation](#6-reference-documentation)
+* [7\. Installation guide](#7-installation-guide)
+* [8\. Configuration guide](#8-configuration-guide)
+* [9\. Contributing guide](#9-contributing-guide)
+* [10\. Code of Conduct](#10-code-of-conduct)
+* [11\. Sponsors](#11-sponsors)
 
 
 
@@ -83,20 +87,64 @@ $ vim
 
 
 
+## 5. Full list of components
 
-## 5. Contributing guide
+| Name | Version | Layer |
+| --- | --- | --- |
+| [certifi](https://certifi.io/) | 2019.3.9 | python3_vim |
+| [certifi](https://certifi.io/) | 2019.3.9 | python2_vim |
+| [jedi](https://github.com/davidhalter/jedi) | 0.15.1 | python3_vim |
+| [jedi](https://github.com/davidhalter/jedi) | 0.15.1 | python2_vim |
+| [parso](https://github.com/davidhalter/parso) | 0.5.1 | python3_vim |
+| [parso](https://github.com/davidhalter/parso) | 0.5.1 | python2_vim |
+| [vim](http://www.vim.org) | 8.1 | python3_vim |
+| [vim](http://www.vim.org) | 8.1 | python2_vim |
+
+*(8 components)*
+
+
+
+
+
+
+
+
+## 6. Reference documentation
+
+- (for **master (development)** version), see [this dedicated site](http://metwork-framework.org/pub/metwork/continuous_integration/docs/master/mfextaddon_vim/) for reference documentation.
+- (for **latest released stable** version), see [this dedicated site](http://metwork-framework.org/pub/metwork/releases/docs/stable/mfextaddon_vim/) for reference documentation.
+
+For very specific use cases, you might be interested in
+[reference documentation for integration branch](http://metwork-framework.org/pub/metwork/continuous_integration/docs/integration/mfextaddon_vim/).
+
+And if you are looking for an old released version, you can search [here](http://metwork-framework.org/pub/metwork/releases/docs/).
+
+
+
+## 7. Installation guide
+
+See [this document](.metwork-framework/install_a_metwork_package.md).
+
+
+## 8. Configuration guide
+
+See [this document](.metwork-framework/configure_a_metwork_package.md).
+
+
+
+## 9. Contributing guide
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) file.
 
 
 
-## 6. Code of Conduct
+## 10. Code of Conduct
 
 See [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) file.
 
 
 
-## 7. Sponsors
+## 11. Sponsors
 
 *(If you are officially paid to work on MetWork Framework, please contact us to add your company logo here!)*
 
