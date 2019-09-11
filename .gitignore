@@ -16,4 +16,9 @@ doc/layer_scientific.rst
 doc/mfextaddon_scientific_intro.rst
 doc/CHANGELOG*.md
 doc/CHANGELOG*.rst
-doc/changelogs.rst 
+doc/README.md
+doc/README.rst
+doc/changelogs.rst
+doc/layer_python2_vim.rst
+doc/layer_python3_vim.rst
+doc/layer_vim.rst
