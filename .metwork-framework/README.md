@@ -3,8 +3,6 @@
 This module is a [mfext](https://github.com/metwork-framework/mfext) add-on which
 provides an opinionated VIM editor (and configuration) for use in [MetWork Framework](http://metwork-framework.org) env.
 
-**WARNING: this addon is still experimental and not available in released branches**
-
 ## Provided layers
 
 This add-on provides three layers:
