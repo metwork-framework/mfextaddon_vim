@@ -127,12 +127,14 @@ let g:grep_cmd_opts = '--noheading'
 autocmd FilterWritePre * if &diff | setlocal wrap< | endif
 
 let g:ale_sign_column_always = 1
+let g:black_linelength = 79
 let g:ale_python_pylint_options = "--errors-only"
-let g:ale_python_flake8_args = "--ignore D100,D101,D102,D103,D104,D105,D107"
+let g:ale_python_flake8_args = "--ignore D100,D101,D102,D103,D104,D105,D107,W503"
 
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 map <leader>e :NERDTreeToggle<CR>
 map <leader>t :TagbarToggle<CR>
+map <leader>b :Black<CR>
 autocmd FileType python setlocal omnifunc=jedi#completions
 let g:jedi#popup_on_dot = 0
 let g:jedi#show_call_signatures = 0
