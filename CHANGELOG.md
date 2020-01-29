@@ -4,6 +4,7 @@
 ## [Unreleased]
 
 ### New Features
+- add black support
 
 
 ### Bug Fixes
