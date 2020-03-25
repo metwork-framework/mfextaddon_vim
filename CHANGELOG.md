@@ -9,6 +9,7 @@
 
 
 ### Bug Fixes
+- remove vim warning if git is missing
 - fix vimdiff alias
 
 
