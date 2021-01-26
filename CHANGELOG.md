@@ -4,7 +4,6 @@
 
 ### New Features
 
-- first version
 - add black support
 - pythonX_vim layers now depend on pythonX_devtools
 
