@@ -1,4 +1,4 @@
-# automatically generated from https://github.com/metwork-framework/resources/blob/master/cookiecutter/_%7B%7Bcookiecutter.repo%7D%7D/mfxxx_drone.yml template
+# automatically generated from https://github.com/metwork-framework/github_organization_management/blob/master/common_files/mfxxx_drone.yml template
 
 
 
@@ -31,7 +31,7 @@ build_common: &build_common
     - if test "${OS_VERSION}" = "centos6"; then export METWORK_BUILD_OS=generic; else export METWORK_BUILD_OS=${OS_VERSION}; fi
 
 
-    - yum install -y metwork-mfext-layer-python2_devtools-${DRONE_BRANCH}
+    - yum install -y metwork-mfext-layer-python2_devtools-${DRONE_BRANCH##release_}
 
     - if test -d /buildcache; then export BUILDCACHE=/buildcache; fi
     - mkdir -p /opt/metwork-mfext-$${TARGET_DIR}
@@ -44,7 +44,7 @@ build_common: &build_common
     - if test -f /opt/metwork-mfext-$${TARGET_DIR}/.dhash; then cat /opt/metwork-mfext-$${TARGET_DIR}/.dhash; fi
     - cat module_hash.debug |sort |uniq ; rm -f module_hash.debug
     - echo "$${MODULEHASH}${DRONE_TAG}${DRONE_BRANCH}" |md5sum |cut -d ' ' -f1 >.build_hash
-    - if test -f "$${BUILDCACHE}/build_hash_`cat .build_hash`"; then echo "next bypass"; touch .drone_downstream_bypass; exit 0; fi
+    - if test -f "$${BUILDCACHE}/build_hash_mfextaddon_vim_${DRONE_BRANCH}_`cat .build_hash`"; then echo "next bypass"; touch .drone_downstream_bypass; exit 0; fi
     - if test -d docs; then if test -d /pub; then make docs >/pub/metwork/continuous_integration/buildlogs/${DRONE_BRANCH}/mfextaddon_vim/${OS_VERSION}/${DRONE_BUILD_NUMBER}/make_doc.log 2>&1 || ( tail -200 /pub/metwork/continuous_integration/buildlogs/${DRONE_BRANCH}/mfextaddon_vim/${OS_VERSION}/${DRONE_BUILD_NUMBER}/make_doc.log ; exit 1 ) else make docs; fi; fi
     - if test -d doc; then if test -d /pub; then make doc >/pub/metwork/continuous_integration/buildlogs/${DRONE_BRANCH}/mfextaddon_vim/${OS_VERSION}/${DRONE_BUILD_NUMBER}/make_doc.log 2>&1 || ( tail -200 /pub/metwork/continuous_integration/buildlogs/${DRONE_BRANCH}/mfextaddon_vim/${OS_VERSION}/${DRONE_BUILD_NUMBER}/make_doc.log ; exit 1 ) else make doc; fi; fi
     - rm -Rf html_doc
@@ -66,8 +66,10 @@ publish_ci_common: &publish_ci_common
     - if ! test -L /pub/metwork/continuous_integration/rpms/${DRONE_BRANCH}/portable; then ln -s centos6 /pub/metwork/continuous_integration/rpms/${DRONE_BRANCH}/portable; fi
     - cp *.rpm /pub/metwork/continuous_integration/rpms/${DRONE_BRANCH}/${OS_VERSION}/
     - createrepo --update /pub/metwork/continuous_integration/rpms/${DRONE_BRANCH}/${OS_VERSION}
+    - chown -R 1018:1018 /pub/metwork/continuous_integration/rpms/${DRONE_BRANCH}/${OS_VERSION}/repodata
     - rm -Rf /pub/metwork/continuous_integration/docs/${DRONE_BRANCH}/mfextaddon_vim; mkdir -p /pub/metwork/continuous_integration/docs/${DRONE_BRANCH}/mfextaddon_vim ; if test -d html_doc; then cp -Rf html_doc/* /pub/metwork/continuous_integration/docs/${DRONE_BRANCH}/mfextaddon_vim/ ; fi
-    - touch "$${BUILDCACHE}/build_hash_`cat .build_hash`"
+    - rm -f $${BUILDCACHE}/build_hash_mfextaddon_vim_${DRONE_BRANCH}_*
+    - touch "$${BUILDCACHE}/build_hash_mfextaddon_vim_${DRONE_BRANCH}_`cat .build_hash`"
   volumes:
     - /pub:/pub
     - /private:/private
@@ -256,6 +258,7 @@ pipeline:
       - cp *.rpm /pub/metwork/releases/rpms/${DRONE_BRANCH}/${OS_VERSION}/
 
       - createrepo --update /pub/metwork/releases/rpms/${DRONE_BRANCH}/${OS_VERSION}
+      - chown -R 1018:1018 /pub/metwork/releases/rpms/${DRONE_BRANCH}/${OS_VERSION}/repodata
       - rm -Rf /pub/metwork/releases/docs/${DRONE_BRANCH}/mfextaddon_vim; mkdir -p /pub/metwork/releases/docs/${DRONE_BRANCH}/mfextaddon_vim ; if test -d html_doc; then cp -Rf html_doc/* /pub/metwork/releases/docs/${DRONE_BRANCH}/mfextaddon_vim/ ; fi
     when:
       event: tag
@@ -279,6 +282,9 @@ pipeline:
     when:
       event: tag
       ref: refs/tags/v*
+
+
+
 
 
 
