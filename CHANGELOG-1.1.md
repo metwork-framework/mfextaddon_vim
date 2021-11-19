@@ -2,6 +2,8 @@
 
 ## v1.1.0 (2021-05-01)
 
-- No interesting change
+### New Features
+
+- update vim to fix python3.8 compilation (#42)
 
 
