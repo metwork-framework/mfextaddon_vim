@@ -8,7 +8,7 @@ export CHECKTYPE=MD5
 export CHECKSUM=1739a1df312305155285f0cfa6118294
 DESCRIPTION=\
 Vim is a highly configurable text editor for efficiently creating and changing any kind of text.
-WEBSITE=http://www.vim.org
+WEBSITE=https://www.vim.org
 LICENSE=GPL
 SHORT_VERSION=81
 
