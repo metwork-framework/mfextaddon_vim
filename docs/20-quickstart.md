@@ -22,13 +22,7 @@ $ . /opt/metwork-mfext/share/interactive_profile
 $ # We check that the layer is installed and loaded
 $ layers |grep vim
 - (*) python3_vim@mfext [/opt/metwork-mfext/opt/python3_vim]
-- python2_vim@mfext [/opt/metwork-mfext/opt/python2_vim]
 - (*) vim@mfext [/opt/metwork-mfext/opt/vim]
-
-$ # note: we should have the `(*)` sign before each **loaded** layers
-$ #       in that example, this is normal not to have the `(*)` sign before
-$ #       python2_vim@mfext layer because both pythonX layers are mutually
-$ #       exclusive
 
 $ # Let's test
 $ vim
