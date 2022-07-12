@@ -177,3 +177,8 @@ autocmd FileType * autocmd BufWritePre <buffer> :call <SID>TrimEndLines()
 autocmd FileType * autocmd BufWritePre <buffer> :call <SID>RemoveNBSpaces()
 autocmd BufRead,BufNewFile *.md setlocal spell spelllang=en_us
 set complete+=kspell
+
+" disable modifyOtherKeys
+" https://github.com/metwork-framework/mfextaddon_vim/issues/63
+let &t_TI = ""
+let &t_TE = ""
