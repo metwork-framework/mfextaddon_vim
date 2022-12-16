@@ -1,5 +1,11 @@
 # release_2.1 CHANGELOG
 
+## [Unreleased]
+
+### Bug Fixes
+
+- Vim adds extra spaces when pasting (#65) (backport #68) (#69)
+
 ## v2.1.0 (2022-12-03)
 
 ### New Features
