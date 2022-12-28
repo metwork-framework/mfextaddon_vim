@@ -1,4 +1,4 @@
-let &runtimepath=$MFEXT_HOME."/opt/vim/config/vim,".$MFEXT_HOME."/opt/python3_vim/share/vim/vim82"
+let &runtimepath=$MFEXT_HOME."/opt/vim/config/vim,".$MFEXT_HOME."/opt/python3_vim/share/vim/vim90"
 
 " Use Vim settings and not vi ones
 " (must be first)

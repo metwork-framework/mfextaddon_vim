@@ -2,16 +2,14 @@ include ../../../adm/root.mk
 include $(MFEXT_HOME)/share/package.mk
 
 export NAME=vim
-export VERSION=8.2.3614
+export VERSION=9.0.1062
 export EXTENSION=tar.gz
 export CHECKTYPE=MD5
-export CHECKSUM=49c93377bfb28a764337102136b5170f
+export CHECKSUM=087ecdafc39b3b6d2e48a8e0be5d0515
 DESCRIPTION=\
 Vim is a highly configurable text editor for efficiently creating and changing any kind of text.
 WEBSITE=https://www.vim.org
 LICENSE=GPL
-
-#Fix for python3.9 is included in patch 8.2.0354
 
 all:: $(PREFIX)/bin/vim
 $(PREFIX)/bin/vim:
