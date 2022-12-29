@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+### New Features
+
+- upgrade vim from 8.2 to 9.0 (backport #70) (#71)
+
 ### Bug Fixes
 
 - Vim adds extra spaces when pasting (#65) (backport #68) (#69)
