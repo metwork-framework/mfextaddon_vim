@@ -179,3 +179,9 @@ set complete+=kspell
 " https://github.com/metwork-framework/mfextaddon_vim/issues/63
 let &t_TI = ""
 let &t_TE = ""
+
+" disable keyprotocol
+" https://github.com/metwork-framework/mfextaddon_vim/issues/72
+set keyprotocol=
+let &term = &term
+
