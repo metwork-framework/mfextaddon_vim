@@ -9,6 +9,7 @@
 ### Bug Fixes
 
 - Vim adds extra spaces when pasting (#65) (backport #68) (#69)
+- VIM v9 issue with gnome terminal (#72) (backport #73) (#74)
 
 ## v2.1.0 (2022-12-03)
 
