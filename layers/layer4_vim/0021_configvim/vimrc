@@ -4,6 +4,10 @@ let &runtimepath=$MFEXT_HOME."/opt/vim/config/vim,".$MFEXT_HOME."/opt/python3_vi
 " (must be first)
 set nocompatible
 
+" Do not try to connect to the X server (otherwise vim can be slow in case of  X11Forwarding)
+" See https://stackoverflow.com/questions/14635295/vim-takes-a-very-long-time-to-start-up
+set clipboard=exclude:.*
+
 " Disable gitgutter if git is not an executable in the path
  if executable('git')
    let g:gitgutter_enabled = 1
