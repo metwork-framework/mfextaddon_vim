@@ -1,5 +1,11 @@
 # release_2.1 CHANGELOG
 
+## [Unreleased]
+
+### Bug Fixes
+
+- change in vimrc to accelerate vim in case of X11Forwarding (backport #75) (#76)
+
 ## v2.1.1 (2023-01-06)
 
 ### New Features
