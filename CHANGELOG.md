@@ -10,5 +10,6 @@
 
 - Vim adds extra spaces when pasting (#65) (#68)
 - VIM v9 issue with gnome terminal (#72) (#73)
+- change in vimrc to accelerate vim in case of X11Forwarding (#75)
 
 
