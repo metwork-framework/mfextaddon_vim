@@ -2,10 +2,10 @@ include ../../../adm/root.mk
 include $(MFEXT_HOME)/share/package.mk
 
 export NAME=vim
-export VERSION=9.0.1062
+export VERSION=9.0.2116
 export EXTENSION=tar.gz
 export CHECKTYPE=MD5
-export CHECKSUM=087ecdafc39b3b6d2e48a8e0be5d0515
+export CHECKSUM=2a209e401259e50568f77d5bd9fdc94d
 DESCRIPTION=\
 Vim is a highly configurable text editor for efficiently creating and changing any kind of text.
 WEBSITE=https://www.vim.org
