@@ -5,6 +5,7 @@
 ### New Features
 
 - upgrade vim from 8.2 to 9.0 (#70)
+- upgrade vim to last version (9.0.2116) (#81)
 
 ### Bug Fixes
 
