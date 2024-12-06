@@ -1,3 +1,5 @@
+.. image:: https://github.com/davidhalter/jedi-vim/blob/master/doc/logotype-a.svg
+
 #################################################
 jedi-vim - awesome Python autocompletion with VIM
 #################################################
@@ -38,7 +40,7 @@ You can read the Jedi library documentation `here <http://jedi.readthedocs.io/en
 
 If you want to report issues, just use the github issue tracker. In case of
 questions about the software, please use `stackoverflow
-<https://stackoverflow.com>`_ and tag your question with ``jedi-vim``.
+<https://stackoverflow.com/questions/tagged/jedi-vim>`_ and tag your question with ``jedi-vim``.
 
 
 Contributing
@@ -56,9 +58,10 @@ generators, there is broad support.
 Apart from that, jedi-vim supports the following commands
 
 - Completion ``<C-Space>``
-- Goto assignments ``<leader>g`` (typical goto function)
-- Goto definitions ``<leader>d`` (follow identifier as far as possible,
+- Goto assignment ``<leader>g`` (typical goto function)
+- Goto definition ``<leader>d`` (follow identifier as far as possible,
   includes imports and statements)
+- Goto (typing) stub ``<leader>s``
 - Show Documentation/Pydoc ``K`` (shows a popup with assignments)
 - Renaming ``<leader>r``
 - Usages ``<leader>n`` (shows all the usages of a name)
@@ -70,10 +73,9 @@ Installation
 
 Requirements
 ------------
-You need a VIM version that was compiled with Python 2.6 or later
-(``+python`` or ``+python3``), which is typical for most distributions on
-Linux.  You can check this from within VIM using
-``:python3 import sys; print(sys.version)`` (use ``:python`` for Python 2).
+You need a VIM version that was compiled with Python 3 or later
+(``+python3``).  You can check this from within VIM using
+``:python3 import sys; print(sys.version)``.
 
 Manual installation
 -------------------
@@ -81,15 +83,25 @@ Manual installation
 You might want to use `pathogen <https://github.com/tpope/vim-pathogen>`_ or
 `Vundle <https://github.com/gmarik/vundle>`_ to install jedi-vim.
 
-The first thing you need after that is an up-to-date version of Jedi. You can
-either install it via ``pip install jedi`` or with
-``git submodule update --init`` in your jedi-vim repository.
+The first thing you need after that is an up-to-date version of Jedi. Install
+``git submodule update --init --recursive`` in your jedi-vim repository.
 
 Example installation command using Pathogen:
 
 .. code-block:: sh
 
-    cd ~/.vim/bundle/ && git clone --recursive https://github.com/davidhalter/jedi-vim.git
+    git clone --recursive https://github.com/davidhalter/jedi-vim.git ~/.vim/bundle/jedi-vim
+
+Example installation using Vundle:
+
+Add the following line in your `~/.vimrc`
+    
+.. code-block:: vim
+
+    Plugin 'davidhalter/jedi-vim'
+
+For installing Jedi, ``pip install jedi`` will also work, but you might run
+into issues when working in virtual environments. Please use git submodules.
 
 
 Installation with your distribution
@@ -102,7 +114,7 @@ It is also available on
 `Ubuntu (≥14.04) <http://packages.ubuntu.com/vim-python-jedi>`__ as
 vim-python-jedi.
 On Fedora Linux, it is available as
-`vim-jedi <https://apps.fedoraproject.org/packages/vim-jedi>`__.
+`vim-jedi <https://packages.fedoraproject.org/pkgs/vim-jedi/vim-jedi/>`__.
 
 Please note that this version might be quite old compared to using jedi-vim
 from Git.
@@ -170,8 +182,10 @@ and usually saves one keypress.
 
 Jedi displays function call signatures in insert mode in real-time, highlighting
 the current argument. The call signatures can be displayed as a pop-up in the
-buffer (set to 1, the default), which has the advantage of being easier to refer
-to, or in Vim's command line aligned with the function call (set to 2), which
+buffer (set to 1 by default (with the conceal feature), 2 otherwise),
+which has the advantage of being easier to refer to (but is a hack with
+many drawbacks since it changes the buffer's contents),
+or in Vim's command line aligned with the function call (set to 2), which
 can improve the integrity of Vim's undo history.
 
 .. code-block:: vim
@@ -187,12 +201,26 @@ get more information. If you set them to ``""``, they are not assigned.
 
     let g:jedi#goto_command = "<leader>d"
     let g:jedi#goto_assignments_command = "<leader>g"
+    let g:jedi#goto_stubs_command = "<leader>s"
     let g:jedi#goto_definitions_command = ""
     let g:jedi#documentation_command = "K"
     let g:jedi#usages_command = "<leader>n"
     let g:jedi#completions_command = "<C-Space>"
     let g:jedi#rename_command = "<leader>r"
+    let g:jedi#rename_command_keep_name = "<leader>R"
 
+An example for setting up your project:
+
+.. code-block:: vim
+
+    let g:jedi#environment_path = "/usr/bin/python3.9"
+
+jedi-vim tries its best to guess your virtual env. If you want to work with a
+specific virtual environment however, you can point jedi-vim towards it:
+
+.. code-block:: vim
+
+    let g:jedi#environment_path = "venv"
 
 Finally, if you don't want completion, but all the other features, use:
 
@@ -202,6 +230,12 @@ Finally, if you don't want completion, but all the other features, use:
 
 FAQ
 ===
+
+I want to use Jedi with a Python 2 Environment, but it's not listed under "Known environments"
+----------------------------------------------------------------------------------------------
+
+Starting with version 0.18.0 Jedi dropped support for Python 2.
+
 
 I don't want the docstring window to popup during completion
 ------------------------------------------------------------
@@ -221,16 +255,30 @@ Don't even think about changing the Jedi command to ``<Tab>``,
 use `supertab <https://github.com/ervandew/supertab>`_!
 
 
-The completion is waaay too slow!
----------------------------------
+The completion is too slow!
+---------------------------
 
-Completion of complex libraries (like Numpy) should only be slow the first time
-you complete it. After that, the results should be cached and very fast.
+1. Completion of complex libraries (like Numpy) should only be slow the first
+   time you complete them. After that the results should be cached and very fast.
 
-If it's still slow, in case you've installed the python-mode VIM plugin, disable
-it. It seems to conflict with jedi-vim. See issue `#163
-<https://github.com/davidhalter/jedi-vim/issues/163>`__.
+2. If it is still slow after the initial completion and you have installed the
+   python-mode Vim plugin, try disabling its rope mode:
 
+   .. code-block:: vim
+
+       let g:pymode_rope = 0
+
+   See issue `#163 <https://github.com/davidhalter/jedi-vim/issues/163>`__.
+
+3. You can also use `deoplete-jedi <https://github.com/zchee/deoplete-jedi>`__
+   for completions, which uses Jedi, but does completions asynchronously
+   (requires Neovim).
+   It makes sense to use both jedi-vim and deoplete-jedi, but you should disable
+   jedi-vim's completions then:
+
+   .. code-block:: vim
+   
+       let g:jedi#completions_enabled = 0
 
 Testing
 =======
