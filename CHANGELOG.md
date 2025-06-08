@@ -1,5 +1,11 @@
 # release_2.0 CHANGELOG
 
+## [Unreleased]
+
+### New Features
+
+- remove layer python2_vim (#89)
+
 ## v2.0.3 (2023-12-15)
 
 - No interesting change
